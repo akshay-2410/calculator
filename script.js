@@ -8,12 +8,13 @@ let ext = document.getElementById("sci-cal");
 let num_cnt = document.getElementById("num-cnt")
 let sci_num = document.getElementById("sci-num")
 let button = document.querySelectorAll(".button"), extended=false
-
+let decimal=false;
+let decimal2 = false
 
 nums.onclick= function(event){
     oper_check=0
     let val = event.target.textContent;
-    console.log(event.target.id)
+    console.log(val)
     if(event.target.id=="change"){
         value = -1*value
         print()
@@ -26,8 +27,33 @@ nums.onclick= function(event){
         value = value.slice(0,-1)
         print()
     }
-    else if((val>='0'&&val<='9')||val=='.')
+    else if((val>='0'&&val<='9'))
         input(val);
+    else if(val=='.')
+    {
+        console.log("val = "+val)
+        for(i = 0; i<value.length; i++)
+        {
+            if(value[i]=='.')
+            {
+               decimal = true;
+               break;
+            }
+            else{
+                decimal = false;
+            }
+        }
+
+        if(decimal)
+            {
+                input("")
+                print();
+            }
+            else{
+                input(".")
+                print();
+            }
+    }
 
 }
 
@@ -53,6 +79,8 @@ operid.onclick = function(event){
                     input("*");
                 else
                     input(oper)
+
+                    oper_check = 1;
             }else
             {
                 value = value.slice(0,-1)
@@ -66,7 +94,7 @@ operid.onclick = function(event){
             }
         }
             
-        oper_check=1
+        
     }
 }
 
@@ -81,7 +109,25 @@ function print(){
 
 function calculate(){
     console.log(value)
-    value = parseFloat(eval(value)).toFixed(8)
+    for(i=0;i<value.length;i++){
+        if(value[i]=='/'||value[i]==".")
+        {
+            decimal2=true
+            break;
+        }
+        else{
+            decimal2 = false;
+        }
+
+    }
+
+    if(decimal2){
+        value = parseFloat(eval(value)).toFixed(5)
+    }
+    else{
+        value = eval(value)
+       
+    }
     screen.innerHTML = value
 }
 
