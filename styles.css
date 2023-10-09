@@ -163,7 +163,7 @@ html,body{
     height: 20%;
 }
 
-@media screen and (max-width:500px)
+@media screen and (max-width:600px)
 {
     .outer-box{
         width: 100%;
