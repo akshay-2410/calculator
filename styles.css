@@ -162,3 +162,10 @@ html,body{
 .sci-num2 button{
     height: 20%;
 }
+
+@media screen and (max-width:500px)
+{
+    .outer-box{
+        width: 100%;
+    }
+}
